@@ -12,8 +12,12 @@ class MyLayout extends React.Component {
   }
 
   render() {
+    console.log(this.props);
+    
     return (
-      <div style={{ position: "fixed", height: "100%", width: "100%", top: 0 }}>
+      <div
+        style={{ position: "fixed", height: "100%", width: "100%", top: 0 }}
+      >
         <TabBar
           unselectedTintColor="#949494"
           tintColor="#33A3F4"
@@ -24,14 +28,9 @@ class MyLayout extends React.Component {
             key="home"
             icon={<span className="iconfont icon-home" />}
             selectedIcon={<span className="iconfont icon-home" />}
-            selected={this.state.selectedTab === "blueTab"}
-            onPress={() => {
-              this.setState({
-                selectedTab: "blueTab"
-              });
-            }}
-          >
-            2
+            selected={this.props.match.url === "/"}
+            onPress={() => { this.props.history.push("/") }} >
+            {this.props.children}
           </TabBar.Item>
           <TabBar.Item
             icon={<span className="iconfont icon-gouwuche" />}
@@ -39,28 +38,23 @@ class MyLayout extends React.Component {
             title="购物车"
             key="Cart"
             badge={1}
-            selected={this.state.selectedTab === "redTab"}
-            onPress={() => {
-              this.setState({
-                selectedTab: "redTab"
-              });
-            }}
-          >
-            3
+            selected={this.props.match.url === "/Cart"}
+            onPress={() => { this.props.history.push("/Cart"); }} >
+            {this.props.children}
           </TabBar.Item>
           <TabBar.Item
             icon={<span className="iconfont icon-weibiaoti2fuzhi12" />}
-            selectedIcon={<span className="iconfont icon-weibiaoti2fuzhi12" />}
+            selectedIcon={
+              <span className="iconfont icon-weibiaoti2fuzhi12" />
+            }
             title="我的"
             key="Mine"
-            selected={this.state.selectedTab === "greenTab"}
+            selected={this.props.match.url === "/Mine"}
             onPress={() => {
-              this.setState({
-                selectedTab: "greenTab"
-              });
+              this.props.history.push("/Mine");
             }}
           >
-            4
+            {this.props.children}
           </TabBar.Item>
         </TabBar>
       </div>
