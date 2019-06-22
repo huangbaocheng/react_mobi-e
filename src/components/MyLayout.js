@@ -1,19 +1,14 @@
 import React from "react";
 import { TabBar } from "antd-mobile";
 
+
 class MyLayout extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectedTab: "redTab",
-      fullScreen: false,
-      hidden: false
-    };
+    
   }
 
   render() {
-    console.log(this.props);
-    
     return (
       <div
         style={{ position: "fixed", height: "100%", width: "100%", top: 0 }}
@@ -29,8 +24,12 @@ class MyLayout extends React.Component {
             icon={<span className="iconfont icon-home" />}
             selectedIcon={<span className="iconfont icon-home" />}
             selected={this.props.match.url === "/"}
-            onPress={() => { this.props.history.push("/") }} >
-            {this.props.children}
+            onPress={() => {
+              this.props.history.push("/");
+            }}
+          >
+            {/* 要让url上的路径 / Item里面的children才开始渲染   */}
+            {this.props.match.url === "/" ? this.props.children : null}
           </TabBar.Item>
           <TabBar.Item
             icon={<span className="iconfont icon-gouwuche" />}
@@ -39,8 +38,11 @@ class MyLayout extends React.Component {
             key="Cart"
             badge={1}
             selected={this.props.match.url === "/Cart"}
-            onPress={() => { this.props.history.push("/Cart"); }} >
-            {this.props.children}
+            onPress={() => {
+              this.props.history.push("/Cart");
+            }}
+          >
+            {this.props.match.url === "/Cart" ? this.props.children : null}
           </TabBar.Item>
           <TabBar.Item
             icon={<span className="iconfont icon-weibiaoti2fuzhi12" />}
@@ -54,7 +56,7 @@ class MyLayout extends React.Component {
               this.props.history.push("/Mine");
             }}
           >
-            {this.props.children}
+            {this.props.match.url === "/Mine" ? this.props.children : null}
           </TabBar.Item>
         </TabBar>
       </div>
