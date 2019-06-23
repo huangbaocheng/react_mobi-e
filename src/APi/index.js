@@ -22,3 +22,7 @@ axios.interceptors.response.use(
  export const getGoods=()=>axios.get("goods/gettopdata/goods");
  //2h获取商品列表页数据
  export const getGoodsGroup = () => axios.get("goods/getgoodsgroup");
+ //3 获取商品详情
+ export const getGoodsInfo = (id) => axios.get("goods/getgoodsinfo/"+id);
+
+ 
