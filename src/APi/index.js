@@ -20,3 +20,5 @@ axios.interceptors.response.use(
 
 //1获取轮播图数据
  export const getGoods=()=>axios.get("goods/gettopdata/goods");
+ //2h获取商品列表页数据
+ export const getGoodsGroup = () => axios.get("goods/getgoodsgroup");
