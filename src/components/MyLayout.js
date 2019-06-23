@@ -3,12 +3,9 @@ import { TabBar } from "antd-mobile";
 
 
 class MyLayout extends React.Component {
-  constructor(props) {
-    super(props);
-    
-  }
+ 
 
-  render() {
+  render(){
     return (
       <div
         style={{ position: "fixed", height: "100%", width: "100%", top: 0 }}

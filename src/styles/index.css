@@ -1,0 +1,19 @@
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+img{
+    width: 100%;
+    /* 去除图片的3px间隙 */
+    display: block;
+}
+a{
+    /* 继承颜色 */
+    color:inherit;
+    text-decoration: none;
+    /* 移动端 点击a标签的 高亮的颜色 transparent     透明色 */
+    -webkit-tap-highlight-color: transparent;
+}
