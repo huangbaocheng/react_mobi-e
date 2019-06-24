@@ -1,7 +1,3 @@
-
-
-
-
 import React, { Component, Fragment } from "react";
 import { Carousel } from "antd-mobile";
 //  可以让我们的Home组件获取到路由信息对象 history 和match
@@ -14,13 +10,11 @@ class Home extends Component {
     //推荐商品
     toplist: [],
     //商品列表
-    GoodsGroupList:[],
+    GoodsGroupList: [],
     imgHeight: 176
   };
   componentDidMount() {
-    // simulate img loading
     getGoods().then(res => {
-      // console.log(res);
       if (res.status === 0) {
         this.setState({
           sliderlist: res.message.sliderlist,
@@ -29,12 +23,11 @@ class Home extends Component {
       }
     });
     //商品列表
-    getGoodsGroup()
-     .then(res=>{
-      if(res.status===0){
-        this.setState({  GoodsGroupList:res.message  });
+    getGoodsGroup().then(res => {
+      if (res.status === 0) {
+        this.setState({ GoodsGroupList: res.message });
       }
-    })
+    });
   }
   render() {
     return (
@@ -125,6 +118,7 @@ class Home extends Component {
           </style>
         </div>
         {/* 推荐商品结束 */}
+
         {/* 商品详情开始 */}
         <div className="good_group">
           {this.state.GoodsGroupList.map(v1 => (
@@ -135,7 +129,7 @@ class Home extends Component {
                   <a
                     href="javascript:;"
                     onClick={() =>
-                      this.props.history.push("/GoodsDetail/" + v2.id)
+                      this.props.history.push("/GoodsDetail/" + v2.artID)
                     }
                     key={v2.artID}
                     className="goods_item"

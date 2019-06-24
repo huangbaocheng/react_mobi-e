@@ -1,9 +1,10 @@
 
 import React ,{Component , Fragment} from 'react';
 import { NavBar, Icon } from "antd-mobile";
-import { Carousel, WingBlank } from "antd-mobile";
+import { Carousel} from "antd-mobile";
 import { getGoodsInfo } from "../APi";
-import { TabBar } from "antd-mobile";
+import {connect} from 'react-redux';
+
 
 
 class GoodsDetail extends Component {
@@ -34,6 +35,7 @@ class GoodsDetail extends Component {
         return (
           <Fragment>
             {/* 顶部导航栏开始 */}
+
             <NavBar
               mode="dark"
               icon={<Icon type="left" />}
@@ -42,6 +44,7 @@ class GoodsDetail extends Component {
             >
               商品详情
             </NavBar>
+
             {/* 顶部导航栏结束 */}
             {/* 轮播图开始 */}
             <Carousel autoplay infinite>
@@ -135,6 +138,7 @@ class GoodsDetail extends Component {
               </style>
             </div>
             {/* 商品信息结束 */}
+
             {/* 底部工具栏开始 */}
             <div className="btm_tool">
               <div className="btm_item btm_cantact">
@@ -144,15 +148,18 @@ class GoodsDetail extends Component {
               <div className="btm_item btm_cart">
                 <div className="iconfont icon-gouwuche" />
                 <p>购物车</p>
-                <span
-                  className="badge"
-                >
-                  2
-                </span>
+                <span className="badge">{this.props.cartLength}</span>
               </div>
-              <div className="btm_item btm_cart_add">加入购物车</div>
+              <div
+                className="btm_item btm_cart_add"
+                onClick={() => {
+                  this.props.handleCartAdd(this.state.goodsinfo);
+                }}
+              >
+                加入购物车
+              </div>
               <div className="btm_item btm_buy">立即购买</div>
-              
+
               <style jsx>
                 {`
                   .btm_tool {
@@ -206,8 +213,18 @@ class GoodsDetail extends Component {
         );
     }
 }
+const mapStateToProps=(state)=>{
+  console.log(state);
+  //种类的数量也等于购物车的长度
+  return {
+    cartLength:state.cartReducer.cartList.length
+  };
+}
  
-export default GoodsDetail;
+export default connect(
+  mapStateToProps,
+  null
+)(GoodsDetail);
 
 
 
