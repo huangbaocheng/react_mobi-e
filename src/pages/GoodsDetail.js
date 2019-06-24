@@ -3,6 +3,7 @@ import React ,{Component , Fragment} from 'react';
 import { NavBar, Icon } from "antd-mobile";
 import { Carousel, WingBlank } from "antd-mobile";
 import { getGoodsInfo } from "../APi";
+import { TabBar } from "antd-mobile";
 
 
 class GoodsDetail extends Component {
@@ -98,14 +99,16 @@ class GoodsDetail extends Component {
                   </div>
                 </div>
               </div>
-              <div className="goods_info_content" 
-              dangerouslySetInnerHTML={{__html:this.state.goodsinfo.content}}>
-                  
-              </div>
+              <div
+                className="goods_info_content"
+                dangerouslySetInnerHTML={{
+                  __html: this.state.goodsinfo.content
+                }}
+              />
               <style jsx>
                 {`
                   .goods_info {
-                      margin-bottom: 40px;
+                    margin-bottom: 40px;
                     padding-top: 5px;
                     .goods_title {
                       font-weight: 600;
@@ -132,6 +135,73 @@ class GoodsDetail extends Component {
               </style>
             </div>
             {/* 商品信息结束 */}
+            {/* 底部工具栏开始 */}
+            <div className="btm_tool">
+              <div className="btm_item btm_cantact">
+                <div className="iconfont icon-kefu" />
+                <p>客服</p>
+              </div>
+              <div className="btm_item btm_cart">
+                <div className="iconfont icon-gouwuche" />
+                <p>购物车</p>
+                <span
+                  className="badge"
+                >
+                  2
+                </span>
+              </div>
+              <div className="btm_item btm_cart_add">加入购物车</div>
+              <div className="btm_item btm_buy">立即购买</div>
+              
+              <style jsx>
+                {`
+                  .btm_tool {
+                    height: 50px;
+                    width: 100%;
+                    display: flex;
+                    position: fixed;
+                    bottom: 0;
+                    flex: 0;
+                    background: #fff;
+                    .btm_item {
+                      flex: 1;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      flex-direction: column;
+                    }
+                    .btm_cantact {
+                    }
+                    .btm_cart {
+                      position: relative;
+                      .badge {
+                        position: absolute;
+                        top: 0;
+                        left: 61%;
+                        border-radius: 50%;
+                        padding: 2px 6px;
+                        background-color: orangered;
+                        color: #fff;
+                        font-size: 12px;
+                      }
+                    }
+                    .btm_cart_add {
+                      color: #fff;
+                      background: #ff976a;
+
+                      flex: 2;
+                    }
+                    .btm_buy {
+                      color: #fff;
+                      background: #f00;
+
+                      flex: 2;
+                    }
+                  }
+                `}
+              </style>
+            </div>
+            {/* 底部工具栏结束*/}
           </Fragment>
         );
     }
