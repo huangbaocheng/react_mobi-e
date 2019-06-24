@@ -4,6 +4,7 @@ import { NavBar, Icon } from "antd-mobile";
 import { Carousel} from "antd-mobile";
 import { getGoodsInfo } from "../APi";
 import {connect} from 'react-redux';
+import {cart_add} from '../store/actionCreator';
 
 
 
@@ -148,7 +149,9 @@ class GoodsDetail extends Component {
               <div className="btm_item btm_cart">
                 <div className="iconfont icon-gouwuche" />
                 <p>购物车</p>
-                <span className="badge">{this.props.cartLength}</span>
+                <span className="badge"
+                style={{display:this.props.cartLength?'block':'none'}}
+                >{this.props.cartLength}</span>
               </div>
               <div
                 className="btm_item btm_cart_add"
@@ -220,10 +223,20 @@ const mapStateToProps=(state)=>{
     cartLength:state.cartReducer.cartList.length
   };
 }
+//将行为映射到props 中
+const mapDispatch=(dispatch)=>{
+  return{
+    handleCartAdd:(goodsObj)=>{
+    //  console.log(goodsObj);
+    //会触发到管理员上
+      dispatch(cart_add(goodsObj));
+    }
+  }
+}
  
 export default connect(
   mapStateToProps,
-  null
+  mapDispatch
 )(GoodsDetail);
 
 
