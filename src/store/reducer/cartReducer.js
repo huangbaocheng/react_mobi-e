@@ -54,7 +54,7 @@ export default (state=defaultState,action)=>{
       // index ===-1 =>不存在
 
       let index = newState.cartList.findIndex(v => v.id === goodsObj.id);
-      if(index==-1){
+      if(index===-1){
         // 不存在
         let newGoods = {
           id: goodsObj.id,
