@@ -1,5 +1,6 @@
 import React from "react";
 import { TabBar } from "antd-mobile";
+import { connect } from "react-redux";
 
 
 class MyLayout extends React.Component {
@@ -33,7 +34,7 @@ class MyLayout extends React.Component {
             selectedIcon={<span className="iconfont icon-gouwuche" />}
             title="购物车"
             key="Cart"
-            badge={1}
+            badge={this.props.cartLength}
             selected={this.props.match.url === "/Cart"}
             onPress={() => {
               this.props.history.push("/Cart");
@@ -60,5 +61,13 @@ class MyLayout extends React.Component {
     );
   }
 }
+const mapStateToProps = state => {
+  // console.log(state);
+  //种类的数量也等于购物车的长度
+  return {
+    cartLength: state.cartReducer.cartList.length
+  };
+};
 
-export default MyLayout;
+
+export default connect(mapStateToProps,null)(MyLayout);

@@ -5,6 +5,7 @@ import { Carousel} from "antd-mobile";
 import { getGoodsInfo } from "../APi";
 import {connect} from 'react-redux';
 import {cart_add} from '../store/actionCreator';
+import { Toast} from "antd-mobile";
 
 
 
@@ -146,12 +147,20 @@ class GoodsDetail extends Component {
                 <div className="iconfont icon-kefu" />
                 <p>客服</p>
               </div>
-              <div className="btm_item btm_cart">
+              <div
+                className="btm_item btm_cart"
+                onClick={()=>{this.props.history.push("/Cart")}}
+              >
                 <div className="iconfont icon-gouwuche" />
                 <p>购物车</p>
-                <span className="badge"
-                style={{display:this.props.cartLength?'block':'none'}}
-                >{this.props.cartLength}</span>
+                <span
+                  className="badge"
+                  style={{
+                    display: this.props.cartLength ? "block" : "none"
+                  }}
+                >
+                  {this.props.cartLength}
+                </span>
               </div>
               <div
                 className="btm_item btm_cart_add"
@@ -228,6 +237,7 @@ const mapDispatch=(dispatch)=>{
   return{
     handleCartAdd:(goodsObj)=>{
     //  console.log(goodsObj);
+    Toast.success('添加成功')
     //会触发到管理员上
       dispatch(cart_add(goodsObj));
     }
